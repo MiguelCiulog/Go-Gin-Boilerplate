@@ -1,8 +1,8 @@
 package routes
 
 import (
+	"github.com/MiguelCiulog/Go-Gin-Boilerplate/controllers"
 	"github.com/gin-gonic/gin"
-	"github.com/vsouza/go-gin-boilerplate/controllers"
 )
 
 func NewRoute(parent *gin.RouterGroup) *gin.RouterGroup {

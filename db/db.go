@@ -3,25 +3,18 @@ package db
 // TODO: Change to mysql database
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/vsouza/go-gin-boilerplate/config"
+	"database/sql"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
-var db *dynamodb.DynamoDB
+var DB *sql.DB
 
 func Init() {
-	c := config.GetConfig()
-	db = dynamodb.New(session.New(&aws.Config{
-		Region:      aws.String(c.GetString("db.region")),
-		Credentials: credentials.NewEnvCredentials(),
-		Endpoint:    aws.String(c.GetString("db.endpoint")),
-		DisableSSL:  aws.Bool(c.GetBool("db.disable_ssl")),
-	}))
-}
-
-func GetDB() *dynamodb.DynamoDB {
-	return db
+	var err error
+	DB, err = sql.Open("mysql", "root:passwd@tcp(0.0.0.0:3306)/user")
+	if err != nil {
+		panic("Error when creating database")
+	}
+	Migrate()
 }

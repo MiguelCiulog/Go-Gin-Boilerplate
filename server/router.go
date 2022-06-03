@@ -1,8 +1,8 @@
 package server
 
 import (
+	"github.com/MiguelCiulog/Go-Gin-Boilerplate/server/routes"
 	"github.com/gin-gonic/gin"
-	"github.com/vsouza/go-gin-boilerplate/server/routes"
 )
 
 func NewRouter() *gin.Engine {
