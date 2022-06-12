@@ -5,12 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewRoute(parent *gin.RouterGroup) *gin.RouterGroup {
+func NewRouteUser(parent *gin.RouterGroup) *gin.RouterGroup {
 
 	userGroup := parent.Group("users")
 	{
 		user := new(controllers.UserController)
-		userGroup.GET("/:id", user.Retrieve)
+		userGroup.GET("/", user.RetrieveAllUsers)
+		userGroup.GET("/:id", user.GetUserById)
 	}
 	return userGroup
 }

@@ -12,7 +12,7 @@ func NewRouter() *gin.Engine {
 
 	parent := router.Group("/")
 	{
-		routes.NewRoute(parent)
+		routes.NewRouteUser(parent)
 	}
 	return router
 }
